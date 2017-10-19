@@ -1,0 +1,34 @@
+﻿<Window x:Class="treegui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:treegui"
+        mc:Ignorable="d"
+        Title="treegui" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl Margin="10,85,10,28">
+            <TabItem Header="Output">
+                <Grid Background="White"></Grid>
+            </TabItem>
+            <TabItem Header="Raw Output">
+                <Grid Background="White">
+                    <TextBox x:Name="rawTextBox" TextWrapping="Wrap" AcceptsReturn="True" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Help">
+                <Grid Background="White">
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{DynamicResource HelpText}" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid Background="LightGray" Height="18" VerticalAlignment="Bottom"/>
+        <Button Content="Execute" Height="23" Margin="0,10,10,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="68"/>
+        <Label Content="Path" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,10,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="351" Margin="46,10,0,0"/>
+        <Button Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" Margin="402,10,0,0" Height="23"/>
+        <CheckBox Content="/F - Display the names of the files in each folder." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,0,0"/>
+        <CheckBox Content="/A - Use ASCII instead of extended characters." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"/>
+
+    </Grid>
+</Window>
