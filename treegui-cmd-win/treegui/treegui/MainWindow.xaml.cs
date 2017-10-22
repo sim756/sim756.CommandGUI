@@ -15,25 +15,65 @@ using System.Windows.Shapes;
 
 namespace treegui
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            switch (Environment.GetCommandLineArgs().Length)
+            {
+                case 2:
+                    switch (Environment.GetCommandLineArgs()[1].ToLower())
+                    {
+                        case "/f":
+                            flagFCheckBox.IsChecked = true;
+                            break;
+                        case "/a":
+                            flagACheckBox.IsChecked = true;
+                            break;
+                        default:
+                            folderPathTextBox.Text = Environment.GetCommandLineArgs()[1];
+                            break;
+                    }
+                    break;
+                case 3:
+                    if (Environment.GetCommandLineArgs()[1].ToLower() == "/f" || Environment.GetCommandLineArgs()[2].ToLower() == "/f")
+                    {
+                        flagFCheckBox.IsChecked = true;
+                    }
+                    if (Environment.GetCommandLineArgs()[1].ToLower() == "/a" || Environment.GetCommandLineArgs()[2].ToLower() == "/a")
+                    {
+                        flagACheckBox.IsChecked = true;
+                    }
+                    break;
+                case 4:
+                    if (Environment.GetCommandLineArgs()[2].ToLower() == "/f" || Environment.GetCommandLineArgs()[3].ToLower() == "/f")
+                    {
+                        flagFCheckBox.IsChecked = true;
+                    }
+                    if (Environment.GetCommandLineArgs()[2].ToLower() == "/a" || Environment.GetCommandLineArgs()[3].ToLower() == "/a")
+                    {
+                        flagACheckBox.IsChecked = true;
+                    }
+                    break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            rawTextBox.Text = "";
-            string[] args = Environment.GetCommandLineArgs();
-            for (int i = 1; i < args.Length; i++)
-            {
-                rawTextBox.Text += args[i];
+            string exec = $"{folderPathTextBox.Text}"
+                        + " "
+                        + $"{(flagFCheckBox.IsChecked == true ? Flags.FlagF : Flags.FlagNullOrEmpty)}"
+                        + " "
+                        + $"{(flagACheckBox.IsChecked == true ? Flags.FlagA : Flags.FlagNullOrEmpty)}";
 
-            }
+
+        }
+
+        private void pathSelectionButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
